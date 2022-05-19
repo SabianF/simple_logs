@@ -12,7 +12,11 @@ class Log {
   /// - An optional [object] can be appended to the end
   /// - An optional [logColour] can be specified (default: [LogColour.white])
   /// 
-  /// Used for general events (e.g. starting functions, etc)
+  /// Used to display helpful info such as
+  /// - identifying when functions start executing
+  /// - identifying when different stages of functions begin/end
+  /// - displaying objects returned from functions
+  /// - and more
   static void info(String text, {
     Object object   = '',
     String logColour= LogColour.white,
@@ -25,6 +29,8 @@ class Log {
   );
 
   /// Logs information (green); level 0 severity
+  /// 
+  /// - An optional [object] can be appended to the end
   /// 
   /// Typically used to show a function has completed with no issues
   static void success(String text, {
@@ -39,7 +45,10 @@ class Log {
 
   /// Logs a warning (orange); lvl 1 severity
   /// 
-  /// Typically used for failures that are handled or will not break anything
+  /// - An optional [object] can be appended to the end
+  /// 
+  /// Typically used for exceptions or failures that are handled or do not
+  /// necessarily break anything
   static void warn(String text, {
     Object object = '',
 
