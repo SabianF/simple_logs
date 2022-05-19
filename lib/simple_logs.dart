@@ -95,7 +95,7 @@ class Log {
   }) => log(
     '$colour'
       '${DateTime.now()}: '
-      'Error: $text'
+      '$text'
     '${LogColour.end} '
     '$object',
 
