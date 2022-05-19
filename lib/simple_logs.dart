@@ -5,6 +5,19 @@ import 'dart:developer';
 import 'log_colour.dart';
 
 /// Colourized logs for easier readability
+/// 
+/// This is typically used to show helpful information during testing and
+/// debugging in `VS Code`'s terminal. For other terminals, these colours were
+/// not designed for them, so they may not look the same, but they should still
+/// work.
+/// 
+/// Each log type has a standard colour associated with it, but the [info]
+/// type's colour can be changed using any [LogColour] or any other valid 
+/// [ANSI escape code](https://en.wikipedia.org/wiki/ANSI_escape_code). Here's
+/// [a helpful resource](https://www.kindacode.com/article/flutter-how-to-colorize-debug-console-logs/)
+/// to understand how this works.
+/// 
+/// Optional [Object]s can be provided which get interpolated as [String]s
 class Log {
 
   /// Logs information (default: blue); lvl 0 severity
@@ -12,7 +25,11 @@ class Log {
   /// - An optional [object] can be appended to the end
   /// - An optional [logColour] can be specified (default: [LogColour.white])
   /// 
-  /// Used for general events (e.g. starting functions, etc)
+  /// Used to display helpful info such as
+  /// - identifying when functions start executing
+  /// - identifying when different stages of functions begin/end
+  /// - displaying objects returned from functions
+  /// - and more
   static void info(String text, {
     Object object   = '',
     String logColour= LogColour.white,
@@ -25,6 +42,8 @@ class Log {
   );
 
   /// Logs information (green); level 0 severity
+  /// 
+  /// - An optional [object] can be appended to the end
   /// 
   /// Typically used to show a function has completed with no issues
   static void success(String text, {
@@ -39,7 +58,10 @@ class Log {
 
   /// Logs a warning (orange); lvl 1 severity
   /// 
-  /// Typically used for failures that are handled or will not break anything
+  /// - An optional [object] can be appended to the end
+  /// 
+  /// Typically used for exceptions or failures that are handled or do not
+  /// necessarily break anything
   static void warn(String text, {
     Object object = '',
 

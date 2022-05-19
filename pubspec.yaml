@@ -1,7 +1,7 @@
 name: simple_logs
-description: A new Flutter package project.
+description: A simple way to display readable logs without using `print`.
 version: 0.0.1
-homepage:
+homepage: https://github.com/SabianF/simple_logs.git
 
 environment:
   sdk: ">=2.16.2 <3.0.0"
