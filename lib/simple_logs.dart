@@ -81,7 +81,7 @@ class Log {
     colour        : LogColour.red,
     text          : 'Error: $text',
     object        : error,
-    stack         : stackTrace,
+    stack         : stackTrace ?? StackTrace.current,
     severityLevel : 3,
   );
 
@@ -99,7 +99,7 @@ class Log {
     '${LogColour.end} '
     '$object',
 
-    stackTrace: stack ?? StackTrace.current,
+    stackTrace: stack,
     level     : severityLevel,
   );
 }
