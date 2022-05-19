@@ -17,14 +17,11 @@ class Log {
     Object object   = '',
     String logColour= LogColour.white,
 
-  }) => log(
-    '$logColour'
-      '${DateTime.now()}: '
-      'Info: $text'
-    '${LogColour.end} '
-    '$object',
-
-    level: 0,
+  }) => _log(
+    colour        : LogColour.white,
+    text          : 'Info: $text',
+    object        : object,
+    severityLevel : 0,
   );
 
   /// Logs information (green); level 0 severity
@@ -33,14 +30,11 @@ class Log {
   static void success(String text, {
     Object object = '',
 
-  }) => log(
-    '${LogColour.green}'
-      '${DateTime.now()}: '
-      'Success: $text'
-    '${LogColour.end} '
-    '$object',
-
-    level: 0,
+  }) => _log(
+    colour        : LogColour.green,
+    text          : 'Success: $text',
+    object        : object,
+    severityLevel : 0,
   );
 
   /// Logs a warning (orange); lvl 1 severity
@@ -49,29 +43,41 @@ class Log {
   static void warn(String text, {
     Object object = '',
 
-  }) => log(
-      '${LogColour.orange}'
-        '${DateTime.now()}: '
-        'Warning: $text'
-      '${LogColour.end} '
-      '$object',
-
-      level: 1,
-    );
+  }) => _log(
+    colour        : LogColour.orange,
+    text          : 'Warning: $text',
+    object        : object,
+    severityLevel : 1,
+  );
 
   /// Logs an error (red); lvl 2 severity
   static void error(String text, {
     Object error = '',
     StackTrace? stackTrace,
 
-  }) => log(
-      '${LogColour.red}'
-        '${DateTime.now()}: '
-        'Error: $text'
-      '${LogColour.end} '
-      '$error',
+  }) => _log(
+    colour        : LogColour.red,
+    text          : 'Error: $text',
+    object        : error,
+    stack         : stackTrace,
+    severityLevel : 3,
+  );
 
-    stackTrace: stackTrace ?? StackTrace.current,
-    level     : 3,
+  static void _log({
+    required String colour,
+    required String text,
+    required int severityLevel,
+    dynamic object = '',
+    StackTrace? stack,
+
+  }) => log(
+    '$colour'
+      '${DateTime.now()}: '
+      'Error: $text'
+    '${LogColour.end} '
+    '$object',
+
+    stackTrace: stack ?? StackTrace.current,
+    level     : severityLevel,
   );
 }
